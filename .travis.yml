@@ -1,0 +1,18 @@
+
+language: node_js
+
+node_js:
+- '12'
+
+services:
+- mongodb
+
+before_install:
+- npm update
+
+install:
+- npm install
+
+script:
+- npm test main.test.js
+

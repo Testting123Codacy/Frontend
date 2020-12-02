@@ -167,7 +167,7 @@ async function denyRequest(userid, senderEmail) {
  
     for(var i = 1; i < requests.length; i++) {
        
-        if(`${requests[i]}` === senderEmail) {
+        if(`${requests[parseInt(i)]}` === senderEmail) {
            
             await db.collection("users").updateOne({"id" : userid}, {$pull: {
                 "pendingfriends": senderEmail

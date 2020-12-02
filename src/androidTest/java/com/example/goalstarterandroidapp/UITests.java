@@ -5,16 +5,12 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.TextView;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
-
-import com.android.volley.toolbox.StringRequest;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -338,13 +334,7 @@ public class UITests {
         textInputEditText.perform(replaceText("goalstarter@gmail.com"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.button_send_request), withText("Send Friend Request"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.cardView),
-                                        0),
-                                1),
-                        isDisplayed()));
+                allOf(withId(R.id.button_send_request), withText("Send Friend Request")));
         materialButton.perform(click());
 
         ViewInteraction textView3 = onView(

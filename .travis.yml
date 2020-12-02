@@ -8,11 +8,12 @@ services:
 - mongodb
 
 before_install:
+- cd backend
 - npm update
 
 install:
 - npm install
 
 script:
-- npm test backend/main.test.js
+- npm test main.test.js
 

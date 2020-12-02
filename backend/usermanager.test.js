@@ -79,6 +79,7 @@ describe("send friend request", () => {
         await client.close(); 
     });
 
+   
     it("send friend request", async() => {
         let token = await usermanager.sendRequest("cpen321@gmail.com", "cpen331@gmail.com"); 
         expect(token).toStrictEqual("placeholder2"); 

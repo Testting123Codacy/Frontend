@@ -59,7 +59,7 @@ async function viewAll(userid) {
     let user = await db.collection("users").findOne({"id" : userid});  
     let goalids = user.posts; 
     for(var i = 1; i < goalids.length; i++) {
-        let goal = await db.collection("goals").findOne({"id" : `${goalids[i]}`});
+        let goal = await db.collection("goals").findOne({"id" : `${goalids[parseInt(i)]}`});
         JSON.stringify(goal); 
         goals.push(goal); 
     }
@@ -74,7 +74,7 @@ async function findMode(preferences) {
     var maxTag = preferences[0], maxCount = 1;
         for(var m = 0; m < preferences.length; m++)
         {
-            var tag = preferences[m];
+            var tag = preferences[parseInt(m)];
             if(mode[tag] == null) {
                 mode[tag] = 1;
             }
@@ -103,7 +103,7 @@ async function viewFeed(userid, limit) {
     //push friends' latest posts to the feed. 
     let friends = user.friendslist; 
     for(var i = 1; i < friends.length && feed.length < limit; i++) {
-        let friend = await db.collection("users").findOne({"id" : `${friends[i]}`});  
+        let friend = await db.collection("users").findOne({"id" : `${friends[parseInt(i)]}`});  
         let postId = friend.posts[friend.posts.length - 1]; 
         if(friend.posts.length <= 1) {
             continue; 
@@ -116,7 +116,7 @@ async function viewFeed(userid, limit) {
     var preferences = []; 
     let posts = user.posts; 
     for(var j = 1; j < posts.length; j++) {
-        let post = await db.collection("goals").findOne({"id" : `${posts[j]}`}); 
+        let post = await db.collection("goals").findOne({"id" : `${posts[parseInt(j)]}`}); 
         let tag = post.tag; 
    
         preferences = preferences.concat(tag);
@@ -124,7 +124,7 @@ async function viewFeed(userid, limit) {
 
     let likes = user.likes; 
     for(var k = 1; k < likes.length; k++) {
-        let post = await db.collection("goals").findOne({"id" : `${likes[k]}`}); 
+        let post = await db.collection("goals").findOne({"id" : `${likes[parseInt(k)]}`}); 
         let tag = post.tag; 
      
         preferences = preferences.concat(tag);
@@ -132,7 +132,7 @@ async function viewFeed(userid, limit) {
 
     let comments = user.comments; 
     for(var l = 1; l < comments.length; l++) {
-        let post = await db.collection("goals").findOne({"id" : `${comments[l]}`}); 
+        let post = await db.collection("goals").findOne({"id" : `${comments[parseInt(l)]}`}); 
         let tag = post.tag; 
        
         preferences = preferences.concat(tag);

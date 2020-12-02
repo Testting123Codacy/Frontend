@@ -79,7 +79,7 @@ describe("view goals", () => {
         db = client.db("GoalStarter"); 
 
         for(var i = 0; i < 3; i++) { 
-            await db.collection("goals").insertOne(test[i]); 
+            await db.collection("goals").insertOne(test[parseInt(i)]); 
         }
         
 

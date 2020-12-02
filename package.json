@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "preset": "@shelf/jest-mongodb",
-    "test": "jest",
-    "test:watch": "jest --detectOpenHandles --forceExit --coverage"
+    "test": "jest --detectOpenHandles --forceExit --coverage"
   },
   "author": "",
   "license": "ISC",

@@ -59,7 +59,7 @@ async function getFriends(userid) {
     let friendsId = user.friendslist; 
 
     for(var i = 1; i < friendsId.length; i++) {
-        let friend = await db.collection("users").findOne({"id" : `${friendsId[parseInt(i)]}`});
+        let friend = await db.collection("users").findOne({"id" : `${friendsId[parseInt(i,10)]}`});
         let name = friend.username; 
         friends.push(name); 
     }
@@ -98,7 +98,7 @@ async function confirmRequest(userid, senderEmail) {
     let requests = user.pendingfriends; 
     
     for(var i = 1; i < requests.length; i++) {
-        if(`${requests[parseInt(i)]}` === senderEmail) {
+        if(`${requests[parseInt(i,10)]}` === senderEmail) {
             
             await db.collection("users").updateOne({"id" : userid}, {$pull: {
                 "pendingfriends": senderEmail
@@ -167,7 +167,7 @@ async function denyRequest(userid, senderEmail) {
  
     for(var i = 1; i < requests.length; i++) {
        
-        if(`${requests[parseInt(i)]}` === senderEmail) {
+        if(`${requests[parseInt(i, 10)]}` === senderEmail) {
            
             await db.collection("users").updateOne({"id" : userid}, {$pull: {
                 "pendingfriends": senderEmail
